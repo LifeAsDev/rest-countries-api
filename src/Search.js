@@ -57,10 +57,24 @@ const Search = ({
   itemsPerPage,
   setCountryMain,
 }) => {
-  const toggleClassName = (elementId, className) => {
+  const toggleClassName = (elementId, className, groupClassName) => {
+    const elements = document.querySelectorAll("." + groupClassName);
+    console.log(elements);
     const element = document.getElementById(elementId);
+
+    const hasClass = element.classList.contains(className);
+    if (groupClassName === "filter-list") {
+      elements.forEach((element) => {
+        element.classList.add("none");
+      });
+    } else {
+      elements.forEach((element) => {
+        element.classList.remove("rotate");
+      });
+    }
+
     if (element) {
-      if (element.classList.contains(className)) {
+      if (hasClass) {
         element.classList.remove(className);
       } else {
         element.classList.add(className);
@@ -121,8 +135,8 @@ const Search = ({
             </div>
             <div
               onClick={() => {
-                toggleClassName("items-number-list", "none");
-                toggleClassName("chevron3", "rotate");
+                toggleClassName("items-number-list", "none", "filter-list");
+                toggleClassName("chevron3", "rotate", "chevron");
               }}
               className="filter-box items-number-box"
             >
@@ -141,8 +155,8 @@ const Search = ({
             </div>
             <div
               onClick={() => {
-                toggleClassName("filter-sort-list", "none");
-                toggleClassName("chevron2", "rotate");
+                toggleClassName("filter-sort-list", "none", "filter-list");
+                toggleClassName("chevron2", "rotate", "chevron");
               }}
               className="filter-box sort-box"
             >
@@ -157,8 +171,8 @@ const Search = ({
           </div>
           <div
             onClick={() => {
-              toggleClassName("filter-region-list", "none");
-              toggleClassName("chevron1", "rotate");
+              toggleClassName("filter-region-list", "none", "filter-list");
+              toggleClassName("chevron1", "rotate", "chevron");
             }}
             className="filter-box region-box"
           >

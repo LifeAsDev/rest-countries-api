@@ -13,7 +13,11 @@ const CountryMain = ({ setCountryMain, list, countryMain }) => {
         Back
       </div>
       <div className="country-details-main">
-        <img alt={countryMain.flags.alt} src={countryMain.flags.svg}></img>
+        <img
+          loading="lazy"
+          alt={countryMain.flags.alt}
+          src={countryMain.flags.svg}
+        ></img>
         <div className="country-details-main-text">
           <h1>{countryMain.name.common}</h1>
           <div className="country-details-box1">
